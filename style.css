@@ -1,0 +1,423 @@
+@charset "UTF-8";
+html {
+  background: linear-gradient(to top, #848484, #424242);
+  min-height: 100%;
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  position: absolute;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+html,body,body>div{
+  min-height: 100%;
+}
+
+#main-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-height: calc(100vh - 50px);
+  width: 100%;
+}
+
+#gptCanvas {
+  position: absolute; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  height: 100%; 
+}
+
+#gptCanvas canvas {
+  height: 100%;
+  width: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* add box-shadow effect */
+}
+
+h1, h2 {
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  z-index: 900;
+}
+
+h1 {
+  margin: 2rem 0 0;
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-size: 1rem; 
+  line-height: 1.2em; 
+  color: #ffffff;
+}
+
+  #ready-message {
+    color: #fff;
+    position: absolute;
+    transform: translate(-50%, calc(-50% - 190px));
+   }
+   #ready-message >  p {
+    text-shadow: 2px 2px 4px #1e1651;
+  }
+
+#toggleAnimationButton {
+  position: absolute;
+  top: 20rem;
+  left: 50%;
+  transform: translate(-50%, 0); 
+  padding: 0.625rem 1.25rem;
+  background-color: #FFD700;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1003;
+}
+
+#toggleAnimationButton:hover {
+  background-color: #FFEE93; 
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #fff;
+  padding-top: 1.5rem;
+  width: 100%;
+  font-size: 1rem;
+  z-index: 1001;
+  bottom: 0;
+  flex-shrink: 0; /* 追加 */
+}
+
+.footer >  p {
+  padding: 0 1.5rem;
+  line-height: 2em; 
+}
+
+/* --------メディアクエリ-------*/
+/* モバイルデバイス用 (幅480px以下) */
+@media screen and (max-width: 480px) {
+  html, body, body > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    flex-grow: 1; /* 追加 */
+  }
+  h2 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  padding: 1rem;
+  z-index: 900;
+}
+  #gptCanvas {
+  max-height: 100%;
+  max-width: auto;
+  flex-grow: 1; /* 追加 */
+  }
+  #gptCanvas canvas { /*script実行場所 */
+    max-height: 100%;
+    max-width: auto;
+  }
+  #toggleAnimationButton {
+    top: 30rem; 
+  }
+  #ready-message {
+    top: 40rem; 
+  }
+  .footer >  p {
+    padding: 0 1.5rem;
+    line-height: 2em; 
+  }
+}
+
+/* -------------------Phone portrait and smaller（スマホの縦向きとより小さい） */
+@media (max-width: 639px) {
+  html, body, body > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+    #ready-message {
+    top: 40rem;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 190px));
+   }
+    #toggleAnimationButton {
+    top: 30rem;
+    left: 50%;
+  }
+  .footer >  p {
+    padding: 0 1.5rem;
+    line-height: 2em; 
+  }
+
+  /* 他のCSSルール... */
+}
+
+/* -------------------Phone landscape and biggerスマホ横向き */
+@media (min-width: 670px) {
+  html, body, body > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    height: 100%; 
+    width: 100%;
+    flex-grow: 1; /* 追加 */
+    margin: 0 auto; /* 追加 */
+  }  
+  h2 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    width: 100%;
+    padding: 1rem;
+    z-index: 900;
+  }
+  #gptCanvas canvas {
+    height: 100%;
+    width: auto;
+  }
+    #ready-message {
+    top: 10rem;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 190px));
+   }
+    #toggleAnimationButton {
+    top: 30rem;
+    left: 50%;
+  }
+  .footer >  p {
+    padding: 0 1.5rem;
+    line-height: 2em; 
+    flex-shrink: 0;
+  }
+}
+
+/* -------------------タブレットデバイス用 - 縦 (ポートレート) (幅481px〜1023px) */
+@media (min-width: 481px) and (max-width: 1023px) and (orientation: portrait) {
+  html, body, body > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    height: 100%; 
+    width: 100%;
+    flex-grow: 1; /* 追加 */
+    margin: 0 auto; /* 追加 */
+  }  
+  h2 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  padding: 1rem;
+  z-index: 900;
+}
+#gptCanvas {
+  position: absolute; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  height: 100%; 
+}
+#gptCanvas canvas {
+  height: 100%;
+  width: auto;
+}
+#ready-message {
+  top: 55rem; /* 値調整 */
+}
+  #toggleAnimationButton {
+    top: 50rem; /* 値調整 */
+  }
+}
+
+/* -------------------タブレットデバイス用 - 横 (ランドスケープ) (幅481px〜1023px) */
+@media  (max-width: 1023px) and (orientation: landscape) {
+  html, body, body > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-height: calc(100vh - 50px);
+    width: 100%;
+    flex-grow: 1; /* 追加 */
+    margin: 0 auto; /* 追加 */
+  }  
+  h2 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  padding: 1rem;
+  z-index: 900;
+}
+#gptCanvas {
+  position: absolute; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  height: 100%; 
+}
+#gptCanvas canvas {
+  height: 100%;
+  width: auto;
+}
+  #ready-message {
+    top: 40rem;
+    right: 20px;
+  }
+}
+
+/* -------------------Tablet landscape and bigger タブレット横*/
+@media (min-width: 960px) {
+  html, body, body > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+    #ready-message {
+    top: 50rem;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 190px));
+   }
+    #toggleAnimationButton {
+    top: 40rem;
+    left: 50%;
+  }
+}
+
+/* -------------------Desktop and bigger　幅1200px以上のデスクトップパソコン */
+@media (min-width: 1200px) {
+    html, body, body > div {
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    h2 {
+      font-size: 2.5rem;
+    }    
+      #ready-message {
+      top: 60rem;
+      left: 50%;
+      transform: translate(-50%, calc(-50% - 190px));
+     }
+      #toggleAnimationButton {
+      top: 50rem;
+      left: 50%;
+    }
+  }
+  
+/* -------------------Large screen and bigger　幅1600px以上のデスクトップパソコン　テレビとか */
+@media (min-width: 1600px) {
+  html, body, body > div {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }  
+    #ready-message {
+    top: 55rem;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 190px));
+   }
+    #toggleAnimationButton {
+    top: 50rem;
+    left: 50%;
+  }
+}
+
+/* -------------------PC・テレビデバイス用 (幅2024px以上) */
+@media (min-width: 2024px) {
+  html, body, body > div {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }  
+    #ready-message {
+    top: 50rem;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 190px));
+   }
+    #toggleAnimationButton {
+    top: 45rem;
+    left: 50%;
+  }
+}
+
+
